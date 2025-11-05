@@ -1,0 +1,14 @@
+GINI INDEX
+
+Used to split data and it optimizes each split on maximizing purity(Homogeneous data)
+
+4 RED balls &  0  BLUE balls-  this group is 100% pure based on colour
+2 RED & 2 BLUE-      This group    100% impure
+3 RED  & 1 BLUE -   This group is 75% pure (Homogeneous data)
+
+Gini Score:
+0 - It tells that about most pure group of data
+0.5 - Least Pure data group
+0.375 - Pure but not much.
+
+
