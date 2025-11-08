@@ -1,0 +1,362 @@
+SMS Spam Detection Project - Complete Task List
+
+Learning outcome :
+
+1. NLTK LIbrarry (Natural Language Processing)
+   Tokenization, BagOfWords, TF-IDF, Lemmatization, Stop Words 
+
+2. SMOTE (TO check data imbalance)
+
+3. HYPERPARAMETERS
+
+4. Additional LIbrary : wordcloud, imbalanced-learn
+
+
+TASK 1: PROJECT SETUP
+
+    Task 1.1: Environment Configuration
+
+        Install required Python libraries (pandas, numpy, sklearn, nltk, matplotlib, seaborn, wordcloud, imbalanced-learn)
+        Import all necessary libraries in the notebook
+        Download NLTK datasets (punkt, stopwords, wordnet, omw-1.4)  ### Additonal Exploration Required 
+        Set random seed to 42 for reproducibility
+        Configure pandas display options for better output
+        Set matplotlib style to 'seaborn-v0_8'
+        Suppress warning messages
+        Record project start timestamp
+
+
+TASK 2: DATA ACQUISITION AND LOADING
+
+    Task 2.1: Dataset Preparation
+
+        Download SMS Spam Collection Dataset from Kaggle
+        (UCI SMS Spam Collection Dataset : https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
+
+        Save dataset as 'spam.csv' in working directory
+        Load CSV file using pandas with proper encoding
+        Select relevant columns ('v1' for label, 'v2' for message)
+        Rename columns to 'label' and 'message'
+        Display first 5 rows of dataset
+        Display last 5 rows of dataset
+        Check dataset shape (number of rows and columns)
+
+    Task 2.2: Data Quality Check (Preprocessing)
+        Check for missing values in all columns
+        Count missing values per column
+        Identify duplicate messages
+        Remove duplicate messages if found
+        Reset DataFrame index after removal
+        Verify no null messages exist
+        Check data types of all columns
+        Encode labels numerically (ham=0, spam=1)
+
+
+TASK 3: EXPLORATORY DATA ANALYSIS
+
+    Task 3.1: Class Distribution Analysis
+
+        Count total spam messages
+        Count total ham messages
+        Calculate percentage of spam messages
+        Calculate percentage of ham messages
+        Calculate imbalance ratio (ham:spam)
+        Determine if SMOTE will be needed (requires additional exploration to understand SMOTE)
+        Create bar chart showing class counts
+        Add count labels on bars
+        Create pie chart showing class percentages
+        Save class distribution visualization
+
+    Task 3.2: Text Length Analysis
+
+        Calculate character count for each message
+        Calculate word count for each message
+        Calculate average word length per message
+        Compute overall statistics (mean, std, min, max, quartiles)
+        Group statistics by class (spam vs ham)
+        Create histogram for character count distribution
+        Create histogram for word count distribution
+        Create histogram for average word length distribution
+        Create box plot for character count by class
+        Create box plot for word count by class
+        Create box plot for average word length by class
+        Analyze if spam messages are longer than ham
+        Save text length visualization
+
+    Task 3.3: Word Frequency Analysis
+
+        Extract all words from spam messages
+        Extract all words from ham messages
+        Convert words to lowercase
+        Remove punctuation from words
+        Filter out words with 2 or fewer characters
+        Count top 15 most frequent spam words
+        Count top 15 most frequent ham words
+        Print spam word frequency list
+        Print ham word frequency list
+        Create word cloud for spam messages (red theme)
+        Create word cloud for ham messages (green theme)
+        Identify distinctive spam vocabulary
+        Save word cloud visualization
+
+    Task 3.4: Special Character and Pattern Analysis
+
+        Count URLs in each message (http://, https://, www.)
+        Count phone numbers in each message (4+ digits)
+        Count currency symbols (£, $, €, ₹)
+        Count exclamation marks in each message
+        Count question marks in each message
+        Count ALL CAPS words in each message
+        Calculate pattern averages by class
+        Create bar chart for URL frequency by class
+        Create bar chart for phone number frequency by class
+        Create bar chart for currency symbol frequency by class
+        Create bar chart for exclamation marks by class
+        Create bar chart for ALL CAPS words by class
+        Analyze which patterns are spam indicators
+        Save pattern analysis visualization
+
+
+TASK 4: FEATURE ENGINEERING
+    Task 4.1: Create Binary Features
+
+        Create 'contains_url' feature (0 or 1)
+        Create 'contains_phone' feature (0 or 1)
+        Create 'contains_currency' feature (0 or 1)
+
+    Task 4.2: Create Count Features
+
+        Create 'exclamation_count' feature
+        Create 'question_count' feature
+        Create 'caps_words_count' feature (ALL CAPS words)
+        Create 'digit_count' feature
+
+    Task 4.3: Create Percentage Features
+
+        Create 'caps_percentage' feature (% of uppercase letters)
+        Create 'digit_percentage' feature (% of digits)
+        Create 'punctuation_density' feature
+
+    Task 4.4: Create Spam Keyword Feature
+
+        Define spam keyword list (free, win, cash, prize, urgent, call, claim)
+        Count spam keywords in each message
+        Create 'spam_keyword_count' feature
+        Create 'contains_spam_keywords' binary feature
+
+    Task 4.5: Feature Validation
+
+        Add all features to DataFrame
+        Verify no NaN values in features
+        Calculate feature means by class
+        Compare spam vs ham feature averages
+        Identify most discriminative features
+        Print feature statistics summary
+
+
+TASK 5: TEXT PREPROCESSING
+    Task 5.1: Text Cleaning
+
+        Convert all messages to lowercase
+        Remove URLs using regex (http://, https://, www.)
+        Remove email addresses using regex
+        Remove phone numbers using regex
+        Remove extra whitespaces
+        Create 'cleaned_text' column
+        Display 3 cleaning examples (before/after)
+        Verify no empty strings after cleaning
+
+    Task 5.2: Tokenization
+
+        Remove all punctuation marks
+        Split text into individual words (tokens)
+        Remove tokens with 2 or fewer characters
+        Create 'tokens' column with list of words
+        Calculate average tokens per spam message
+        Calculate average tokens per ham message
+        Display 3 tokenization examples
+        Verify tokenization quality
+
+    Task 5.3: Stop Words Removal
+
+        Load English stop words from NLTK
+        Print total number of stop words
+        Define spam indicator words to keep (free, win, winner, cash, prize, urgent, call)
+        Remove spam indicators from stop words list
+        Apply stop word removal to all tokens
+        Create 'tokens_no_stop' column
+        Calculate tokens remaining per message
+        Display 3 examples after stop word removal
+        Verify spam indicators were kept
+
+    Task 5.4: Lemmatization
+
+        Initialize WordNetLemmatizer
+        Apply lemmatization to all tokens
+        Create 'tokens_lemmatized' column
+        Convert lemmatized tokens back to string
+        Create 'processed_text' column (final text)
+        Display complete preprocessing pipeline (5 examples)
+        Check for empty processed messages
+        Remove any empty processed messages
+        Verify final text quality
+
+    Task 5.5: Save Preprocessed Data
+
+        Save DataFrame to 'sms_spam_part1_processed.pkl'
+        Save stop_words set to pickle file
+        Save spam_indicators set to pickle file
+        Save imbalance_ratio variable
+        Save feature_columns list
+        Verify all files created successfully
+        Print confirmation message
+
+
+TASK 6: DATA PREPARATION FOR MODELING
+
+    Task 6.1: Load Preprocessed Data
+
+        Load 'sms_spam_part1_processed.pkl'
+        Load 'sms_spam_part1_variables.pkl'
+        Verify data loaded correctly
+        Check DataFrame shape
+        Verify no data corruption
+
+    Task 6.2: Prepare Feature Sets
+
+        Extract 'processed_text' as X_text
+        Extract 'label_encoded' as y
+        Define numerical feature list (10 features)
+        Extract numerical features as X_numerical
+        Verify feature dimensions
+
+    Task 6.3: Train-Test Split
+
+        Split text data (80% train, 20% test) with stratification
+        Split numerical data (80% train, 20% test) with stratification
+        Use random_state=42
+        Print training set size
+        Print test set size
+        Verify class distribution in training set
+        Verify class distribution in test set
+        Confirm stratification maintained proportions
+
+
+TASK 7: TEXT VECTORIZATION
+    Task 7.1: TF-IDF Vectorization
+
+        Initialize TfidfVectorizer
+        Set max_features=2000
+        Set ngram_range=(1, 2) for unigrams and bigrams
+        Set min_df=2 (ignore terms in less than 2 documents)
+        Set max_df=0.8 (ignore terms in more than 80% documents)
+        Enable sublinear_tf scaling
+        Fit vectorizer on training text ONLY
+        Transform training text to TF-IDF matrix
+        Transform test text to TF-IDF matrix
+        Print vocabulary size
+        Print training matrix shape
+        Print test matrix shape
+        Calculate and print matrix sparsity
+        Display sample vocabulary terms (first 20)
+
+
+TASK 8: FEATURE SCALING AND COMBINATION
+
+    Task 8.1: Scale Numerical Features
+
+        Initialize StandardScaler
+        Fit scaler on training numerical features
+        Transform training numerical features
+        Transform test numerical features
+        Verify scaled features have mean ≈ 0
+        Verify scaled features have std ≈ 1
+        Print scaled feature shape
+
+    Task 8.2: Combine Features
+
+        Use scipy.sparse.hstack for combination
+        Combine TF-IDF train + scaled numerical train
+        Combine TF-IDF test + scaled numerical test
+        Print combined training feature shape
+        Print combined test feature shape
+        Verify total features = TF-IDF + numerical
+        Check combined matrix format (sparse)
+
+
+TASK 9: HANDLE CLASS IMBALANCE
+    Task 9.1: Assess Imbalance
+
+        Print original class distribution in training set
+        Calculate imbalance ratio
+        Decide if SMOTE is needed (ratio > 1.5)
+
+    Task 9.2: Apply SMOTE (if needed)
+
+        Import SMOTE from imblearn
+        Calculate appropriate k_neighbors value
+        Initialize SMOTE with random_state=42
+        Apply SMOTE to training features and labels
+        Print balanced class distribution
+        Verify both classes now have equal counts
+        Store balanced features as X_train_balanced
+        Store balanced labels as y_train_balanced
+
+    Task 9.3: Alternative (if SMOTE not needed)
+
+        Use X_train_combined as X_train_balanced
+        Use y_train as y_train_balanced
+        Note to use class_weight='balanced' in SVM
+
+
+TASK 10: BASELINE MODEL
+
+    Task 10.1: Train Baseline SVM
+
+        Initialize SVC with kernel='linear'
+        Set random_state=42
+        Set class_weight='balanced'
+        Fit baseline model on balanced training data
+        Make predictions on test set
+
+    Task 10.2: Evaluate Baseline
+
+        Calculate baseline accuracy
+        Calculate baseline precision
+        Calculate baseline recall
+        Calculate baseline F1-score
+        Print all baseline metrics
+        Save baseline results for comparison
+
+
+
+TASK 11: HYPERPARAMETER TUNING
+
+    Task 11.1: Define Parameter Grid
+
+        Define C values: [0.1, 1, 10, 100]
+        Define kernels: ['linear', 'rbf']
+        Define gamma values: ['scale', 'auto']
+        Define class_weight options: ['balanced', None]
+        Create parameter grid dictionary
+
+    Task 11.2: Grid Search Setup
+
+        Initialize StratifiedKFold with 3 folds
+        Set shuffle=True, random_state=42
+        Initialize GridSearchCV
+        Set scoring='recall' (prioritize spam detection)
+        Set n_jobs=-1 (use all processors)
+        Set verbose=1 for progress tracking
+
+    Task 11.3: Execute Grid Search
+
+        Fit grid search on balanced training data
+        Wait for completion (may take several minutes)
+        Extract best parameters
+        Extract best cross-validation score
+        Print best parameters
+        Print best CV recall score
+        Extract best estimator as final model
+
+
