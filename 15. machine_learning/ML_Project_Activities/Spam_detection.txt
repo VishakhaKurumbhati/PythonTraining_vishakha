@@ -360,3 +360,212 @@ TASK 11: HYPERPARAMETER TUNING
         Extract best estimator as final model
 
 
+
+TASK 12: COMPREHENSIVE MODEL EVALUATION
+    
+    Task 12.1: Make Predictions
+
+        Predict labels on test set using best model
+        Get decision function scores for ROC curve
+        Verify prediction array shape
+
+    Task 12.2: Calculate Metrics
+
+        Calculate accuracy
+        Calculate precision
+        Calculate recall (sensitivity)
+        Calculate specificity
+        Calculate F1-score
+        Calculate AUC-ROC
+        Store all metrics in dictionary
+        Print comprehensive metrics table
+
+    Task 12.3: Generate Classification Report
+
+        Generate classification report with target names ['Ham', 'Spam']
+        Print detailed classification report
+        Analyze per-class precision, recall, F1
+
+    Task 12.4: Confusion Matrix Analysis
+
+        Generate confusion matrix
+        Extract TN, FP, FN, TP values
+        Print confusion matrix breakdown
+        Calculate False Positive Rate
+        Calculate False Negative Rate
+        Identify critical misclassifications
+
+    Task 12.5: Create Evaluation Visualizations
+
+        Create 2x3 subplot figure
+        Plot confusion matrix heatmap with annotations
+        Plot ROC curve with AUC score
+        Plot Precision-Recall curve with AUC
+        Plot metrics bar chart (Accuracy, Precision, Recall, F1)
+        Plot class-wise performance comparison
+        Plot prediction distribution (TN, FP, FN, TP)
+        Add titles and labels to all plots
+        Save comprehensive evaluation figure
+
+
+TASK 13: MODEL COMPARISON
+    
+    Task 13.1: Train Alternative Models
+
+        Initialize Naive Bayes (MultinomialNB)
+        Initialize Logistic Regression (max_iter=1000)
+        Initialize Random Forest (n_estimators=100)
+        Fit Naive Bayes on balanced training data
+        Fit Logistic Regression on balanced training data
+        Fit Random Forest on balanced training data
+
+    Task 13.2: Compare Performance
+
+        Make predictions with each model on test set
+        Calculate accuracy for each model
+        Calculate precision for each model
+        Calculate recall for each model
+        Calculate F1-score for each model
+        Create comparison DataFrame
+        Print comparison table
+        Identify best performing model by F1-score
+        Print winner announcement
+
+    Task 13.3: Visualize Comparison
+
+        Create grouped bar chart comparing all metrics
+        Create performance heatmap
+        Add model names to x-axis
+        Add metric names to legend/labels
+        Highlight best model
+        Save comparison visualization
+
+
+TASK 14: ERROR ANALYSIS
+    
+    Task 14.1: Identify Misclassifications
+
+        Find indices where predictions ≠ actual labels
+        Count total misclassified messages
+        Separate False Positives (ham predicted as spam)
+        Separate False Negatives (spam predicted as ham)
+        Count False Positives
+        Count False Negatives
+
+    Task 14.2: Analyze False Positives
+
+        Print False Positive count
+        Display first 3 False Positive messages
+        Show actual label (HAM) vs predicted label (SPAM)
+        Analyze why ham was classified as spam
+        Identify common patterns in False Positives
+
+    Task 14.3: Analyze False Negatives
+
+        Print False Negative count with warning
+        Display first 3 False Negative messages
+        Show actual label (SPAM) vs predicted label (HAM)
+        Analyze why spam was missed
+        Identify common patterns in False Negatives
+        Flag these as critical errors
+
+
+TASK 15: CROSS-VALIDATION ANALYSIS
+
+    Task 15.1: Perform Cross-Validation
+
+        Initialize StratifiedKFold with 5 folds
+        Calculate CV accuracy scores
+        Calculate CV precision scores
+        Calculate CV recall scores
+        Calculate CV F1-score scores
+
+    Task 15.2: Report CV Results
+
+        Calculate mean accuracy ± std
+        Calculate mean precision ± std
+        Calculate mean recall ± std
+        Calculate mean F1 ± std
+        Print cross-validation summary
+        Assess model stability across folds
+
+
+TASK 16: FEATURE IMPORTANCE ANALYSIS
+
+    Task 16.1: Extract Feature Coefficients (Linear Kernel Only)
+
+        Check if best model uses linear kernel
+        Extract coefficient array from model
+        Get feature names from TF-IDF vectorizer
+        Combine TF-IDF names with numerical feature names
+        Create feature importance DataFrame
+
+    Task 16.2: Identify Important Features
+
+        Sort features by absolute coefficient value
+        Filter features with positive coefficients (spam indicators)
+        Filter features with negative coefficients (ham indicators)
+        Get top 15 spam indicator features
+        Get top 15 ham indicator features
+        Print spam indicator list with coefficients
+        Print ham indicator list with coefficients
+        Validate features make linguistic sense
+
+
+TASK 17: MODEL PERSISTENCE
+    
+    Task 17.1: Create Model Artifacts
+
+        Create dictionary containing:
+            Trained best model
+            Fitted TF-IDF vectorizer
+            Fitted StandardScaler
+            Numerical feature names list
+            WordNetLemmatizer instance
+            Stop words set
+            Performance metrics dictionary
+            Best parameters from grid search
+
+
+
+    Task 17.2: Save Model
+
+        Import joblib library
+        Save artifacts dictionary to 'spam_detector_complete.pkl'
+        Verify file created successfully
+        Check file size
+        Print confirmation message
+
+
+TASK 18: PREDICTION PIPELINE
+
+    Task 18.1: Create Prediction Function
+
+        Define predict_spam_message() function
+        Implement feature extraction step
+        Implement text preprocessing step
+        Implement text vectorization step
+        Implement numerical feature scaling step
+        Implement feature combination step
+        Implement prediction step
+        Implement confidence calculation step
+        Return prediction, confidence, and features dictionary
+
+    Task 18.2: Test Prediction Pipeline
+
+        Load saved model artifacts
+        Define 4 test messages:
+
+        1 clear ham message
+        1 clear spam message
+        1 borderline ham message
+        1 borderline spam message
+
+
+        Run prediction function on each test message
+        Print message text
+        Print prediction (HAM or SPAM)
+        Print confidence score
+        Print spam indicator features
+        Verify predictions are correct
+
